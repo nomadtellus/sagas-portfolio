@@ -15,6 +15,7 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('SHOW_PROJECTS', showProjects);
+    yield takeEvery('ADD_PROJECT', addProject)
 }
 
 //This Saga will get the projects from db and send them to the reducer
@@ -26,6 +27,19 @@ function* showProjects(action) {
    }catch (error) {
       console.log(`Couldn't get projects`, error);
       alert(`Sorry, couldn't get the projects. Try again later`);
+    };
+  };
+
+  // POST new project to db
+function* addProject(action) {
+    try {
+        console.log(action.payload);
+        
+       yield axios.post('/project', action.payload);
+      yield put({ type: 'SHOW_PROJECTS' });
+    } catch (error) {
+      console.log(`Couldn't add the project`, error);
+      alert(`Sorry, couldn't add the project. Try again later`);
     };
   };
 

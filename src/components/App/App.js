@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Project from '../Project/Project';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
+import Admin from '../Admin/Admin';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 
@@ -17,6 +18,7 @@ class App extends Component {
 
       <div>
         <Route exactPath="/" component={Project}/>
+        <Route exactPath="/admin" component={Admin}/>
 
       </div>
 

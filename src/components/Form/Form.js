@@ -29,8 +29,8 @@ class Form extends Component {
         let propertyName = event.target.name;
         console.log("Property name is", propertyName);
         this.setState({
-          newCustomer: {
-            ...this.state.newCustomer,
+          newProject: {
+            ...this.state.newProject,
             [propertyName]: event.target.value
           }
         });
@@ -39,12 +39,14 @@ class Form extends Component {
       //Grab  info from the form and send it to the server
       handleSubmit = event => {
         event.preventDefault();
-        this.props.addCustomer(this.state.newCustomer);
+        this.addProject(this.state.newProject);
       };
     
       render() {
         return (
           <section>
+            <pre>{JSON.stringify(this.state)}</pre>
+
             <form onSubmit={this.handleSubmit}>
               <label>Name:</label>
               <input
@@ -86,9 +88,9 @@ class Form extends Component {
                 value={this.state.newProject.github}
               />
               <br />
-              <label>Date Completed (MM-DD-YYYY):</label>
+              <label>Date Completed :</label>
               <input
-                type="text"
+                type="date"
                 name="date_completed"
                 onChange={this.handleChangeFor}
                 value={this.state.newProject.date_completed}

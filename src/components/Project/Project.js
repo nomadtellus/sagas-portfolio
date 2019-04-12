@@ -15,12 +15,12 @@ class Project extends Component {
 
     render() {
         return (
-            <div>
+            <div className="project">
                 {/* This will generate a div containing all the project info for each project in db */}
                 {this.props.reduxState.projects.map(project => (
                     <div key={project.id}>
                     <h2>{project.name}</h2>
-                    <img src={project.thumbnail}></img>
+                    <img src={project.thumbnail} alt=""></img>
                     <p>{project.description}</p>
                     <p>{project.website}</p>
                     <p>{project.date_completed}</p>
