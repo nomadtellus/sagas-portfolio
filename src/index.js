@@ -17,10 +17,10 @@ function* rootSaga() {
     yield takeEvery('SHOW_PROJECTS', showProjects);
 }
 
+//This Saga will get the projects from db and send them to the reducer
 function* showProjects(action) {
     try {
-      console.log('GET plantList', action);
-      const getResponse = yield axios.get('/project'); //not sure what the url should be
+      const getResponse = yield axios.get('/project');
       const action = {type:'SET_PROJECTS', payload: getResponse.data};
       yield put(action);
    }catch (error) {

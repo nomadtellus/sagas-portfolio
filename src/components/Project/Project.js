@@ -10,7 +10,7 @@ class Project extends Component {
     this.props.dispatch( { type: 'SHOW_PROJECTS' } );
     }
 
-// use component did mount to dispatch an action to request the plantList from the API
+// use component did mount to dispatch an action to request the projects from the API
     
 
     render() {
