@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class Project extends Component {
 
     componentDidMount() {
-    this.props.dispatch( { type: 'SET_PROJECTS' } );
+    this.props.dispatch( { type: 'SHOW_PROJECTS' } );
     }
 
 // use component did mount to dispatch an action to request the plantList from the API
@@ -16,6 +16,7 @@ class Project extends Component {
     render() {
         return (
             <div>
+                {/* This will generate a div containing all the project info for each project in db */}
                 {this.props.reduxState.projects.map(project => (
                     <div key={project.id}>
                     <h2>{project.name}</h2>
@@ -27,10 +28,6 @@ class Project extends Component {
                     </div>)
                 )}
             </div>
-            <footer>
-                <p><a href="https://github.com/nomadtellus/" target="_blank">Visit my Github Page</a>
-</p>
-            </footer>
         )}
 }
 
@@ -39,4 +36,4 @@ const mapStateToProps = reduxState => ({
 });
 
 
-export default connect(mapStateToProps)(PlantList);
+export default connect(mapStateToProps)(Project);
