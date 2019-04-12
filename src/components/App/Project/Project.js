@@ -8,9 +8,7 @@ class Project extends Component {
 
     componentDidMount() {
     this.props.dispatch( { type: 'SET_PROJECTS' } );
-
-}
-
+    }
 
 // use component did mount to dispatch an action to request the plantList from the API
     
@@ -26,15 +24,19 @@ class Project extends Component {
                     <p>{project.website}</p>
                     <p>{project.date_completed}</p>
                     <p>{project.tag}</p>
-                    </div>
-                ) 
-            </div>      
-        ;
-    }
+                    </div>)
+                )}
+            </div>
+            <footer>
+                <p><a href="https://github.com/nomadtellus/" target="_blank">Visit my Github Page</a>
+</p>
+            </footer>
+        )}
 }
 
 const mapStateToProps = reduxState => ({
     reduxState,
 });
+
 
 export default connect(mapStateToProps)(PlantList);

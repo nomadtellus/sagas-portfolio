@@ -1,16 +1,24 @@
 const express = require('express');
+
 const app = express();
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 5000;
+// Route includes
+const projectRouter = require('./routes/project.router');
 
-/** ---------- MIDDLEWARE ---------- **/
-app.use(bodyParser.json()); // needed for angular requests
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+/* Routes */
+app.use('/project', projectRouter);
+
+// Serve static files
 app.use(express.static('build'));
 
-/** ---------- ROUTES ---------- **/
+// App Set //
+const PORT = process.env.PORT || 5000;
 
-
-/** ---------- START SERVER ---------- **/
-app.listen(port, function () {
-    console.log('Listening on port: ', port);
+/** Listen * */
+app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
 });
