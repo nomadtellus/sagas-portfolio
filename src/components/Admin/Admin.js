@@ -11,6 +11,7 @@ class Admin extends Component {
         const { classes } = this.props;
         return (
             <div>
+                <h1>Administration</h1>
                 <Link to="/">Back to Projects</Link>
                 <Form />
                 <ProjectTable />
