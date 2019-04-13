@@ -24,6 +24,7 @@ function* rootSaga() {
 function* showProjects(action) {
     try {
       const getResponse = yield axios.get('/project');
+      
       const action = {type:'SET_PROJECTS', payload: getResponse.data};
       yield put(action);
    }catch (error) {
