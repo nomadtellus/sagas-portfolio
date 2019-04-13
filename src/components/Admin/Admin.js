@@ -12,7 +12,7 @@ class Admin extends Component {
         return (
             <div>
                 <h1>Administration</h1>
-                <Link to="/">Back to Projects</Link>
+                <Link to="/projects">Back to Projects</Link>
                 <Form />
                 <ProjectTable />
             </div>

@@ -51,10 +51,11 @@ render() {
             <Card className={classes.card}>
               <img className={classes.cardDiv} height='200' width='200'src={project.thumbnail} alt={project.name} />
               <div className={classes.cardDiv}>
-              <p className="name">{project.name} <span className="tag">{project.tag_id}</span></p>
+              <p className="name">{project.name}</p>
+               <p className="tag">{project.tag_id}</p>
               <p className="description">{project.description}</p>
               <Moment format="YYYY/MM/DD" date={project.date_completed} />
-              <a className="link" href={project.github} >GitHub</a> 
+              <a className="link" href={project.github} >Github</a> 
               <a className="link" href={project.website}>Website</a>
           </div>
             </Card>

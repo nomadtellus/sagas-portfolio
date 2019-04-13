@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 class Footer extends Component {
   render() {
     return (
-      <footer>
+      <footer className="footer">
         {/* this will be a link to my github page */}
         <p>
           <a href="https://github.com/nomadtellus/" target="_blank">

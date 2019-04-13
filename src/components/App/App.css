@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: palevioletred;
 }
 
 
@@ -19,6 +20,14 @@
 }
 .mainDiv {
   background-image: url(https://fsmedia.imgix.net/20/e2/a6/67/3801/4982/8519/7edce31d799c/they-live.jpeg)
+}
+
+.footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: palevioletred;
 }
 
 @keyframes App-logo-spin {
