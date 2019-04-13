@@ -7,10 +7,6 @@ import {Link} from 'react-router-dom';
 
 class Admin extends Component {
 
-    onClick = () => {
-
-    }
-
     render() {
         const { classes } = this.props;
         return (

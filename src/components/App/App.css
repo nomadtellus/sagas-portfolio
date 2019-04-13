@@ -4,7 +4,7 @@
 
 
 .App-header {
-  background-color: #222;
+  background-image: url(https://www.pecora.com/wp-content/uploads/2015/11/Fire-web-header-e1455815112413.jpg);
   height: 150px;
   padding: 20px;
   color: white;
@@ -16,6 +16,9 @@
 
 .App-intro {
   font-size: large;
+}
+.mainDiv {
+  background-image: url(https://fsmedia.imgix.net/20/e2/a6/67/3801/4982/8519/7edce31d799c/they-live.jpeg)
 }
 
 @keyframes App-logo-spin {

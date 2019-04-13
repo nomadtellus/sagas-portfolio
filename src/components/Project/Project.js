@@ -5,12 +5,14 @@ import { FormHelperText } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { lightGreen } from '@material-ui/core/colors';
+import Moment from 'react-moment';
+
 
 
 const styles = {
   card: {
-    minWidth: 450,
-    minHeight:450,
+    minWidth: 250,
+    minHeight:250,
     maxWidth: 450,
     maxHeight:450,
     margin: 10,
@@ -29,18 +31,19 @@ const styles = {
   }
 }
 
+
+
 class Project extends Component {
+
 
     componentDidMount() {
     this.props.dispatch( { type: 'SHOW_PROJECTS' } );
     }
 
 // use component did mount to dispatch an action to request the projects from the API
-  
-
-
 
 render() {
+
     const { classes } = this.props;
     return (
         <div className="mainDiv">
@@ -50,7 +53,7 @@ render() {
               <div className={classes.cardDiv}>
               <p className="name">{project.name} <span className="tag">{project.tag_id}</span></p>
               <p className="description">{project.description}</p>
-              <p className="date">{project.date_completed}</p>
+              <Moment format="YYYY/MM/DD" date={project.date_completed} />
               <a className="link" href={project.github} >GitHub</a> 
               <a className="link" href={project.website}>Website</a>
           </div>
