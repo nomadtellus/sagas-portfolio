@@ -1,116 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
-
-
-class Form extends Component {
-
-    state = {
-        newProject: {
-            name: "",
-            description: "",
-            thumbnail: "",
-            website: "",
-            github: "",
-            date_completed: "",
-            tag: ""
-        }
-      };
-    
-      //This will send the new project state to the reducer
-      addProject = () => {
-        const action = {type: 'ADD_PROJECT', payload: this.state.newProject};
-        this.props.dispatch(action);
-      }
-    
-      //this will change the state as the input form is updated
-      handleChangeFor = event => {
-        let propertyName = event.target.name;
-        console.log("Property name is", propertyName);
-        this.setState({
-          newProject: {
-            ...this.state.newProject,
-            [propertyName]: event.target.value
-          }
-        });
-      };
-    
-      //Grab  info from the form and send it to the server
-      handleSubmit = event => {
-        event.preventDefault();
-        this.addProject(this.state.newProject);
-      };
-    
-      render() {
-        return (
-          <section>
-            <pre>{JSON.stringify(this.state)}</pre>
-
-            <form onSubmit={this.handleSubmit}>
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.name}
-              />
-              <br />
-              <label>Description:</label>
-              <input
-                type="text"
-                name="description"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.description}
-              />
-               <br />
-              <label>Thumbnail Link:</label>
-              <input
-                type="text"
-                name="thumbnail"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.thumbnail}
-              />
-                <br />
-              <label>Website:</label>
-              <input
-                type="text"
-                name="website"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.website}
-              />
-              <br />
-              <label>Github Repo:</label>
-              <input
-                type="text"
-                name="github"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.github}
-              />
-              <br />
-              <label>Date Completed :</label>
-              <input
-                type="date"
-                name="date_completed"
-                onChange={this.handleChangeFor}
-                value={this.state.newProject.date_completed}
-              />
-              <br />
-              <label>Tag:</label>
-              <select>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>React</option>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>jQuery</option>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>Node</option>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>SQL</option>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>Redux</option>
-                  <option name="tag" onChange={this.handleChangeFor} value={this.state.newProject.tag}>HTML</option>
-              </select>
-              <button type="submit">Submit</button>
-            </form>
-          </section>
-        );
-      }
-    }
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 
 const mapStateToProps = reduxState => ({
@@ -118,4 +13,162 @@ const mapStateToProps = reduxState => ({
 });
 
 
-export default connect(mapStateToProps)(Form);
+
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+    dense: {
+      marginTop: 19,
+    },
+    menu: {
+      width: 200,
+    },
+  });
+
+class ProjectForm extends Component {
+    
+    state = {
+        newProject: {
+            id: '',
+            name: '',
+            description: '',
+            thumbnail: '',
+            website: '',
+            github: '',
+            date_completed: '',
+            tag_id: '',
+        }
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'GET_TAGS' });
+}
+
+
+
+    handleChange = propertyName => event => {
+        this.setState({
+            newProject: {
+                ...this.state.newProject,
+                [propertyName]: event.target.value,
+            }
+        })
+}
+
+    addNewProject = event => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
+        this.setState({
+            newProject: {
+                id: '',
+                name: '',
+                description: '',
+                thumbnail: '',
+                website: '',
+                github: '',
+                date_completed: '',
+                tag_id: '',
+            }
+        });
+}
+
+
+render() {
+    const { classes } = this.props;
+    return (
+        <div>
+             
+            <form className={classes.container} noValidate autoComplete="off">
+                
+
+
+                <TextField
+                    label="Name"
+                    className={classes.textField}
+                    value={this.state.newProject.name}
+                    onChange={this.handleChange('name')}
+                    margin="normal"
+                    />
+
+                <TextField
+                    label="Description"
+                    className={classes.textField}
+                    value={this.state.newProject.description}
+                    onChange={this.handleChange('description')}
+                    margin="normal"
+                    />
+
+                <TextField
+                    label="Thumbnail"
+                    className={classes.textField}
+                    value={this.state.newProject.thumbnail}
+                    onChange={this.handleChange('thumbnail')}
+                    margin="normal"
+                    />
+
+                <TextField
+                    label="Website"
+                    className={classes.textField}
+                    value={this.state.newProject.website}
+                    onChange={this.handleChange('website')}
+                    margin="normal"
+                    />
+
+                <TextField
+                    label="Github"
+                    className={classes.textField}
+                    value={this.state.newProject.github}
+                    onChange={this.handleChange('github')}
+                    margin="normal"
+                    />
+            
+                <TextField
+                    label="Date Completed"
+                    type="date"
+                    value={this.state.newProject.date_completed}
+                    className={classes.textField}
+                    onChange={this.handleChange('date_completed')}
+                    margin="normal"
+                    InputLabelProps={{
+                    shrink: true,
+                        }}
+                />
+
+                <TextField
+                        select
+                        label="Select A Tag"
+                        className={classes.textField}
+                        value={this.state.newProject.tag_id}
+                        onChange={this.handleChange('tag_id')}
+                        SelectProps={{
+                            MenuProps: {
+                                className: classes.menu,
+                            },
+                        }}
+                        margin="normal"
+                    >
+                        {this.props.reduxState.tags.map(tags => (
+                            <MenuItem key={tags.id} value={tags.id}>
+                            {tags.name}
+                            </MenuItem>
+                        ))}
+</TextField>
+
+<Button variant="contained" color="primary" className={classes.button} onClick={this.addNewProject}>Submit</Button>
+
+              
+            </form>
+        </div>
+    );
+}
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(ProjectForm));

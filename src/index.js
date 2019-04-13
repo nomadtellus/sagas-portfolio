@@ -16,6 +16,8 @@ import createSagaMiddleware from 'redux-saga';
 function* rootSaga() {
     yield takeEvery('SHOW_PROJECTS', showProjects);
     yield takeEvery('ADD_PROJECT', addProject)
+    yield takeEvery('GET_TAGS', getTags);
+    yield takeEvery('DELETE_PROJECT', deleteProject)
 }
 
 //This Saga will get the projects from db and send them to the reducer
@@ -36,10 +38,35 @@ function* addProject(action) {
         console.log(action.payload);
         
        yield axios.post('/project', action.payload);
+       alert('Project successfully added');
       yield put({ type: 'SHOW_PROJECTS' });
     } catch (error) {
       console.log(`Couldn't add the project`, error);
       alert(`Sorry, couldn't add the project. Try again later`);
+    };
+  };
+
+//This will get the tags from the Tags table in the database and add them to the reducer
+  function* getTags(action) {
+    try{
+        console.log('GET tags for projects', action);
+        const getResponse = yield axios.get('/project/tags');
+        const action = {type: 'SET_TAGS', payload: getResponse.data};
+        yield put(action);
+    }catch (error) {
+        console.log(`Couldn't get the tags`);
+        alert(`Sorry couldn't get the tags. Try again later.`)
+    }
+}
+
+ //Delete from the database
+ function* deleteProject(action) {
+    try {
+      yield axios.delete(`/project/${action.payload}`);
+      yield put({ type: 'SHOW_PROJECTS' });
+    } catch (error) {
+      console.log(`Couldn't delete the project`, error);
+      alert(`Sorry, couldn't delete the project. Try again later`);
     };
   };
 
