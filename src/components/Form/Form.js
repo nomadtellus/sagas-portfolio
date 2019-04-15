@@ -43,10 +43,13 @@ class ProjectForm extends Component {
     }
   };
 
+  //This will get the tags you will need to choose from
+  //from the tag reducer
   componentDidMount = () => {
     this.props.dispatch({ type: "GET_TAGS" });
   };
 
+  //this will update the state as the input forms are changed
   handleChange = propertyName => event => {
     this.setState({
       newProject: {
@@ -56,6 +59,9 @@ class ProjectForm extends Component {
     });
   };
 
+  //this function will send the state to get caught by
+  //saga and eventually post to the db as well as clear
+  //all input fields
   addNewProject = event => {
     event.preventDefault();
     this.props.dispatch({
