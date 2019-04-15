@@ -11,10 +11,10 @@ onClick = () =>{
 
   render() {
     return (
-<div>
+    <div>
     <h1>Put on the glasses...</h1>
-    <img src="https://i.warbycdn.com/s/l/72a148d770c2e4fa72d0951611931e3f64314548/2000x1000.jpg?quality=80" onClick={this.onClick}></img>
-    <Link to="/projects">OBEY</Link>
+    <img className="glasses" src="https://i.warbycdn.com/s/l/72a148d770c2e4fa72d0951611931e3f64314548/2000x1000.jpg?quality=80" onClick={this.onClick}></img>
+    <Link className="obey" to="/projects">OBEY</Link>
 
 </div>
     );

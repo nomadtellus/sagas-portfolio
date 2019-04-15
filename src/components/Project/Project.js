@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { lightGreen } from '@material-ui/core/colors';
 import Moment from 'react-moment';
+import Header from '../Header/Header'
 
 
 
@@ -46,6 +47,8 @@ render() {
 
     const { classes } = this.props;
     return (
+        <div>
+        <Header />
         <div className="mainDiv">
           {this.props.reduxState.projects.map(project => (
             <Card className={classes.card}>
@@ -60,6 +63,7 @@ render() {
           </div>
             </Card>
           ))}
+        </div>
         </div>
     );
 }

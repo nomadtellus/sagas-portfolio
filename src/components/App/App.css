@@ -3,7 +3,14 @@
   background-color: palevioletred;
 }
 
+.obey {
+  font-size: 150px;
+  color: black;
+}
 
+.glasses {
+  width: 1000px;
+}
 .App-header {
   background-image: url(https://www.pecora.com/wp-content/uploads/2015/11/Fire-web-header-e1455815112413.jpg);
   height: 150px;

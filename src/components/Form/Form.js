@@ -82,7 +82,7 @@ class ProjectForm extends Component {
       <div>
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
-            label="Name"
+            label="Name (Required)"
             className={classes.textField}
             value={this.state.newProject.name}
             onChange={this.handleChange("name")}
@@ -122,7 +122,7 @@ class ProjectForm extends Component {
           />
 
           <TextField
-            label="Date Completed"
+            label="Date Completed (Required)"
             type="date"
             value={this.state.newProject.date_completed}
             className={classes.textField}
@@ -135,7 +135,7 @@ class ProjectForm extends Component {
 
           <TextField
             select
-            label="Select A Tag"
+            label="Select A Tag (Required)"
             className={classes.textField}
             value={this.state.newProject.tag_id}
             onChange={this.handleChange("tag_id")}
